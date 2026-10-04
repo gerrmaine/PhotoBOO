@@ -1,0 +1,146 @@
+:root {
+  --pb-bg: #140d26;
+  --pb-bg-2: #1e1440;
+  --pb-surface: rgba(255, 255, 255, 0.055);
+  --pb-border: rgba(255, 255, 255, 0.12);
+  --pb-text: #f3effd;
+  --pb-muted: #a79fc4;
+  --pb-accent: #d6336c;
+  --pb-accent-2: #7048e8;
+  --pb-radius: 18px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--pb-text);
+  background:
+    radial-gradient(1100px 620px at 12% -10%, rgba(112, 72, 232, 0.35), transparent 60%),
+    radial-gradient(900px 560px at 92% 8%, rgba(214, 51, 108, 0.28), transparent 60%),
+    linear-gradient(180deg, var(--pb-bg), var(--pb-bg-2));
+  background-attachment: fixed;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+.pb-shell { max-width: 1120px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+
+.pb-card {
+  background: var(--pb-surface);
+  border: 1px solid var(--pb-border);
+  border-radius: var(--pb-radius);
+  backdrop-filter: blur(14px);
+}
+
+.pb-title {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(92deg, #fff, #ffd6e7 42%, #c5b3ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.pb-muted { color: var(--pb-muted); }
+
+.btn-pb {
+  background: linear-gradient(92deg, var(--pb-accent), var(--pb-accent-2));
+  border: 0;
+  color: #fff;
+  font-weight: 650;
+  border-radius: 999px;
+  padding: 0.65rem 1.5rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+.btn-pb:hover:not(:disabled) {
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(214, 51, 108, 0.35);
+}
+.btn-pb:disabled { opacity: 0.5; }
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--pb-border);
+  color: var(--pb-text);
+  border-radius: 999px;
+  padding: 0.6rem 1.3rem;
+  font-weight: 600;
+}
+.btn-ghost:hover { background: rgba(255, 255, 255, 0.09); color: var(--pb-text); }
+
+.form-control.pb-input,
+.form-select.pb-input {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--pb-border);
+  color: var(--pb-text);
+  border-radius: 12px;
+  padding: 0.7rem 0.95rem;
+}
+.form-control.pb-input:focus {
+  background: rgba(0, 0, 0, 0.38);
+  color: var(--pb-text);
+  border-color: var(--pb-accent);
+  box-shadow: 0 0 0 0.2rem rgba(214, 51, 108, 0.2);
+}
+.form-control.pb-input::placeholder { color: #7a7196; }
+
+/* Join codes are read aloud and typed in - monospace with wide tracking makes
+   every character unambiguous. */
+.pb-code {
+  font-family: 'Cascadia Mono', Consolas, monospace;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.pb-selectable {
+  position: relative;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: var(--pb-radius);
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  /* Several of these are Bootstrap .btn elements, which would otherwise pull in
+     the near-black default button colour and vanish against the dark shell. */
+  color: var(--pb-text);
+}
+.pb-selectable:hover,
+.pb-selectable:focus-visible { color: var(--pb-text); }
+.pb-selectable:hover { transform: translateY(-3px); }
+
+.pb-selectable.is-selected {
+  border-color: var(--pb-accent);
+  box-shadow: 0 0 0 4px rgba(214, 51, 108, 0.22);
+}
+
+/* A tinted border alone is easy to miss on a grid of colourful artwork, so the
+   selected tile also gets a tick badge. Every .pb-selectable clips its overflow,
+   hence the badge sits inside the corner rather than straddling it. */
+.pb-selectable.is-selected::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: var(--pb-accent)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-6.5' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center / 13px 13px no-repeat;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+  animation: pb-pop 0.18s ease-out;
+  pointer-events: none;
+}
+
+@keyframes pb-pop {
+  from { transform: scale(0.4); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.pb-strip-shadow { box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5); border-radius: 10px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

@@ -1,0 +1,27 @@
+# Pings the API a couple of times a week so the Supabase free project
+# does not auto-pause after 7 days of zero traffic.
+#
+# In the GitHub repo: Settings → Secrets → Actions → New
+#   Name:  API_HEALTH_URL
+#   Value: https://YOUR-RENDER-HOST.onrender.com/api/health
+
+name: Keep photobooth awake
+
+on:
+  schedule:
+    - cron: '0 12 * * 2,5'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping API health
+        env:
+          API_HEALTH_URL: ${{ secrets.API_HEALTH_URL }}
+        run: |
+          if [ -z "$API_HEALTH_URL" ]; then
+            echo "Set the API_HEALTH_URL repository secret first."
+            exit 1
+          fi
+          curl -fsS "$API_HEALTH_URL"

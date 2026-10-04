@@ -1,0 +1,32 @@
+<!doctype html>
+<!-- Dev-only contact sheet for reviewing character art. Not linked from the app. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Character contact sheet</title>
+    <style>
+      body { background: #1b1430; color: #fff; font: 14px system-ui, sans-serif; margin: 16px; }
+      h2 { font-size: 15px; margin: 18px 0 6px; color: #f7b4d0; }
+      .row { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; }
+      figure { margin: 0; text-align: center; background: #2a2047; border-radius: 10px; padding: 6px; }
+      img { width: 100%; display: block; }
+      figcaption { font-size: 11px; opacity: 0.75; margin-top: 2px; }
+    </style>
+  </head>
+  <body>
+    <div id="out"></div>
+    <script type="module">
+      const { themes } = await (await fetch('/api/themes')).json()
+      document.getElementById('out').innerHTML = themes
+        .map(
+          (t) =>
+            `<h2>${t.name}</h2><div class="row">` +
+            t.characters
+              .map((c) => `<figure><img src="${c.artUrl}" alt="${c.name}"><figcaption>${c.name}</figcaption></figure>`)
+              .join('') +
+            '</div>',
+        )
+        .join('')
+    </script>
+  </body>
+</html>

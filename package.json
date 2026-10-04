@@ -1,0 +1,18 @@
+{
+  "name": "photobooth",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Friends Photobooth - private Worlds, shared themes, 4-frame photo strips",
+  "scripts": {
+    "setup": "npm run install:all && npm run assets && npm run seed",
+    "install:all": "npm --prefix server install && npm --prefix client install",
+    "assets": "node tools/generate-assets.mjs",
+    "seed": "npm --prefix server run seed",
+    "dev": "node tools/dev.mjs",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "build": "npm --prefix client run build",
+    "test": "npm --prefix client test"
+  }
+}

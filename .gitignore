@@ -1,0 +1,23 @@
+# Dependencies and build output
+node_modules/
+dist/
+.vercel/
+
+# Secrets — never commit these. server/.env holds SUPABASE_SERVICE_ROLE_KEY.
+# Only *.env.example files belong in git.
+.env
+.env.local
+.env.*.local
+**/.env
+!**/.env.example
+
+# Leftover local SQLite / disk uploads (not used in production)
+server/data/
+server/uploads/
+*.log
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
