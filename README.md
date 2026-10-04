@@ -4,7 +4,7 @@
 
 > PhotoBOO turns a phone camera into a four-frame booth: pick a world, put your face on a character, decorate the strip, and take home a PNG that looks like the preview. No accounts. No app store. A 6-character code is the invitation.
 
-**Website:** [add your Vercel link here](https://your-app.vercel.app)
+**Website:** https://photo-boo.vercel.app
 
 ---
 
