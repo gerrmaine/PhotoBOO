@@ -100,7 +100,7 @@ function enter(worldId) {
               <label class="form-label small pb-muted">Your name</label>
               <input
                 v-model="form.hostName" class="form-control pb-input mb-4"
-                placeholder="Germaine" maxlength="24" required
+                placeholder="Sam" maxlength="24" required
                 :disabled="!world.canCreateMore"
               />
             </template>
